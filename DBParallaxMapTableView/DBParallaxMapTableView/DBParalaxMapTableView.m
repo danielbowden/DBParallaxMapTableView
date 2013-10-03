@@ -186,17 +186,21 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)])
+    if (_delegate && [_delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)])
     {
-        [_delegate tableView:tableView willSelectRowAtIndexPath:indexPath];
+        return [_delegate tableView:tableView willSelectRowAtIndexPath:indexPath];
+    }
+    else
+    {
+        return indexPath;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     if ([_delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
+     if (_delegate && [_delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
      {
          [_delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
      }
