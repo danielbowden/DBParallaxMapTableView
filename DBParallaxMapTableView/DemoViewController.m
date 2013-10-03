@@ -77,6 +77,14 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.paralaxMapTableView.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Selected" message:[self.sampleData objectAtIndex:indexPath.row] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
